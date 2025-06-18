@@ -1,4 +1,3 @@
-
 // DÉCLARATION
 
 // Déclaration d'une liste de mot en tableau pour le jeu, liste faite avec IA.
@@ -110,7 +109,7 @@ let words = [
 let letter;
 // Déclaration error = Créer pour l'identification des erreurs.
 let error = 0;
-// // Déclaration chek = Créer pour vérifier des conditions dans ma fonction.
+// Déclaration chek = Créer pour vérifier des conditions dans ma fonction.
 let check = false;
 
 // Déclaration answer = récupérer la classe en HTML,
@@ -126,8 +125,8 @@ let fault = document.querySelector(".fault");
 // pour annoncer une victoire, une défaite ou un caractère incorrect.
 let announcement = document.querySelector(".announcement");
 
-// Déclaration wordsRandom = Créer pour trouver un nombre dans mon tableau aléatoirement 
-//(random pour le nombre aléatoire grâce au length et floor pour arrondir le nombre trouvé). 
+// Déclaration wordsRandom = Créer pour trouver un nombre dans mon tableau aléatoirement
+//(random pour le nombre aléatoire grâce au length et floor pour arrondir le nombre trouvé).
 let wordsRandom = Math.floor(Math.random() * words.length);
 // Déclaration wordsFound = Créer pour combiner
 //le nombre et le mot afin de définir un mot aléatoire.
@@ -141,33 +140,58 @@ console.log(tabWordsTransform);
 // new Array est fait pour calculer la longueur du mot
 let tabAnswer = new Array(tabWordsTransform.length).fill("_");
 
-
 // FUNCTION
-
+// La fonction créer ici permet d'identifier les bonnes ou les mauvaise réponses,
+// elle sert également de condition de victoire, gagné ou perdu lorsque le jeu est fini,
+// elle est composée d'une boucle et de if.
 function searchGoodLetters() {
+  // La boucle sert a identifier chaque lettre du mot, lettre par lettre,
+  // par rapport a la longueur du mot.
   for (let i = 0; i < tabWordsTransform.length; i++) {
+    // Ici ma comparaison est : la lettre saisie est identique a une lettre du mot selon l'index.
     if (letter == tabWordsTransform[i]) {
+      // Si c'est le cas alors,
+      // la lettre est placé en HTML selon son index
       tabAnswer[i] = letter;
       console.log(tabAnswer);
-      answer.textContent = tabAnswer.toString("");
+      // Permet d'ajouter un espacement en HTML avec "join".
+      answer.textContent = tabAnswer.join(", ");
+      // Permet d'afficher un texte "Bonne réponse" en HTML.
       announcement.textContent = "Bonne reponse";
+      // Le chek vérifie si la condition est remplie
       check = true;
     }
   }
+
+  // Ici ma comparaison est : mon chek est identique à false
+  // par rapport a la condition juste avant si le chek n'est pas true
+  // on rentre alors dans cette condition (ce qui équivaut à une mauvaise réponse).
   if (check == false) {
+    // Permet d'afficher un texte "Essaye encore" en HTML.
     announcement.textContent = "Essaye encore";
+    // On incrémente l'erreur de +1 à chaque erreur
     error++;
+    // Permet d'afficher les erreur en HTML de 0 à 12.
     fault.textContent = `Erreurs : ` + error + `/12`;
   }
 
+  // Condition de victoire
+
+  // Ici on n'utilise toString pour comparer des chaînes de caractères
+  // car on peux pas comparer des tableau. Donc si mom mot à deviner
+  // est identique au mot trouvé alors.
   if (tabWordsTransform.toString() == tabAnswer.toString()) {
-    console.log("Gagné");
+    // Affiche un message "Gagné" en HTML
     announcement.textContent = "Gagné";
+    // Désactive la saisie dans l'input pour bloquer le jeu.
     input.disabled = true;
   }
 
+  // Ici ma condition est : si mon nombre d'erreur est supérieur ou égale à 12 alors.
   if (error >= 12) {
+    // Affiche un message "Perdu" en HTML
     announcement.textContent = "Perdu";
+    // Désactive la saisie dans l'input pour bloquer le jeu.
     input.disabled = true;
   }
 
@@ -177,22 +201,23 @@ function searchGoodLetters() {
 // EVENT
 // L'écouteur d'événement réagit lorsqu'une touche est pressée dans l'input.
 input.addEventListener("keypress", (event) => {
+  // event.key cible l'événement sur la pression du clavier.
+  // letter = permet d'affecter mon événement à ma lettre.
   letter = event.key;
-  console.log(input.value);
-
+  // permet de réinitialiser la valeur de l'input.
   input.value = "";
-
-  console.log(letter);
-
-  // Le "match" oblige l'utilisateur à utiliser les caractères de "a" à "z" en minuscule et en majuscule 
+  // Le "match" oblige l'utilisateur à utiliser les caractères de "a" à "z"
+  // en minuscule et en majuscule.
   if (!letter.match(/^[a-zA-Z]$/)) {
     announcement.textContent = "ecrit une lettre entre a et z";
-
     return;
   }
-
+  // Ici j'appelle ma fonction qui gére plusieurs choses dans le jeu,
+  // (voir commentaires de la fonction).
   searchGoodLetters();
 });
+
+// Notes perso pendant la création du projet.
 
 // 📓 NOTES:
 
@@ -212,4 +237,6 @@ input.addEventListener("keypress", (event) => {
 // console.log(answer[2]);
 // console.log(answer.length);
 
-// 💡❔ Spread operator ❔💡
+// ⚠️ A REVOIR ⚠️
+// Spread operator -> copie d'un tableau sans modif de l'original
+// JSON.stringify() -> comparaison de tableau avec if

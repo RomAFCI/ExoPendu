@@ -1,7 +1,7 @@
 Plan du readme.md
 
-Nom du projet
--> bref descriptif
+Jeu du pendu :
+  Jeu de devinette avec plusieurs tentatives pour trouver un mot
 
 Objectif du projet
 -> C'est quoi l'objectif
@@ -12,4 +12,4 @@ Découpage du projet
 Fonctions principales
 -> les fonctions que vous avez créé
     -> l'objectif de ces fonctions
--> Les fonctions déjà existantes que vous avez utilisé# ExoPendu
+-> Les fonctions déjà existantes que vous avez utilisé

@@ -144,6 +144,10 @@ let tabAnswer = new Array(tabWordsTransform.length).fill("_");
 // La fonction créer ici permet d'identifier les bonnes ou les mauvaise réponses,
 // elle sert également de condition de victoire, gagné ou perdu lorsque le jeu est fini,
 // elle est composée d'une boucle et de if.
+/**
+ * @param {}
+ * @returns
+ */
 function searchGoodLetters() {
   // La boucle sert a identifier chaque lettre du mot, lettre par lettre,
   // par rapport a la longueur du mot.
@@ -195,6 +199,7 @@ function searchGoodLetters() {
     input.disabled = true;
   }
 
+  // Le chek repasse en false pour pouvoir relancer la fonction
   check = false;
 }
 

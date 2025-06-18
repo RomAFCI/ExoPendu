@@ -1,10 +1,7 @@
-/**
- * @param {*} text
- * @returns {}
- */
 
 // DÉCLARATION
 
+// Déclaration d'une liste de mot en tableau pour le jeu, liste faite avec IA.
 let words = [
   "console",
   "pixel",
@@ -109,21 +106,41 @@ let words = [
   "tank",
 ];
 
+// Déclaration letter = Créer pour l'identification des lettres.
 let letter;
+// Déclaration error = Créer pour l'identification des erreurs.
 let error = 0;
+// // Déclaration chek = Créer pour vérifier des conditions dans ma fonction.
 let check = false;
 
+// Déclaration answer = récupérer la classe en HTML,
+// pour afficher la réponse du mot lors du jeu.
 let answer = document.querySelector(".answer");
+// Déclaration input = récupérer la classe,
+// pour pouvoir appliquer un événement sur celui-ci,
 let input = document.querySelector(".input");
+// Déclaration fault = récupérer la classe,
+// pour changer l'affichage des erreur, faire un compteur de tour.
 let fault = document.querySelector(".fault");
+// Déclaration announcement = récupérer la classe,
+// pour annoncer une victoire, une défaite ou un caractère incorrect.
 let announcement = document.querySelector(".announcement");
 
+// Déclaration wordsRandom = Créer pour trouver un nombre dans mon tableau aléatoirement 
+//(random pour le nombre aléatoire grâce au length et floor pour arrondir le nombre trouvé). 
 let wordsRandom = Math.floor(Math.random() * words.length);
+// Déclaration wordsFound = Créer pour combiner
+//le nombre et le mot afin de définir un mot aléatoire.
 let wordsFound = words[wordsRandom];
 console.log(wordsFound);
+// Déclaration tabWordsTransform = Créer pour séparer chaque lettre du mot.
 let tabWordsTransform = wordsFound.split("");
 console.log(tabWordsTransform);
+// Déclaration tabAnswer = Créer pour afficher en HTML les bonnes réponses (chaque lettre du mot),
+// fill permet d'ajouter un "_" pour les lettres qui n'ont pas était trouvée,
+// new Array est fait pour calculer la longueur du mot
 let tabAnswer = new Array(tabWordsTransform.length).fill("_");
+
 
 // FUNCTION
 
@@ -158,7 +175,7 @@ function searchGoodLetters() {
 }
 
 // EVENT
-
+// L'écouteur d'événement réagit lorsqu'une touche est pressée dans l'input.
 input.addEventListener("keypress", (event) => {
   letter = event.key;
   console.log(input.value);
@@ -167,6 +184,7 @@ input.addEventListener("keypress", (event) => {
 
   console.log(letter);
 
+  // Le "match" oblige l'utilisateur à utiliser les caractères de "a" à "z" en minuscule et en majuscule 
   if (!letter.match(/^[a-zA-Z]$/)) {
     announcement.textContent = "ecrit une lettre entre a et z";
 

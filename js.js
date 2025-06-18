@@ -105,10 +105,19 @@ let words = [
   "tank",
 ];
 
+/**
+ * @param {letter} string
+ */
 // Déclaration letter = Créer pour l'identification des lettres.
 let letter;
+/**
+ * @param {error} number
+*/
 // Déclaration error = Créer pour l'identification des erreurs.
 let error = 0;
+/**
+ * @param {check} boolean
+ */
 // Déclaration chek = Créer pour vérifier des conditions dans ma fonction.
 let check = false;
 
@@ -144,10 +153,7 @@ let tabAnswer = new Array(tabWordsTransform.length).fill("_");
 // La fonction créer ici permet d'identifier les bonnes ou les mauvaise réponses,
 // elle sert également de condition de victoire, gagné ou perdu lorsque le jeu est fini,
 // elle est composée d'une boucle et de if.
-/**
- * @param {}
- * @returns
- */
+
 function searchGoodLetters() {
   // La boucle sert a identifier chaque lettre du mot, lettre par lettre,
   // par rapport a la longueur du mot.
